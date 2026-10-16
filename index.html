@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chytré hodiny</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <main>
@@ -19,8 +20,28 @@
         <div class="VelkýDiv">
             <div class="GrafDiv">
                 <h2>Programování</h2>
-                <canvas></canvas>
+                    <table id="Comity">
+                        <tr>
+                            <td id="01"></td>
+                            <td id="02"></td>
+                            <td id="03"></td>
+                            <td id="04"></td>
+                            <td id="05"></td>
+                            <td id="06"></td>
+                            <td id="07"></td>
+                        </tr>
+                        <tr>
+                            <td id="08"></td>
+                            <td id="09"></td>
+                            <td id="10"></td>
+                            <td id="11"></td>
+                            <td id="12"></td>
+                            <td id="13"></td>
+                            <td id="14"></td>
 
+                        </tr>
+                    </table>
+                    <p id="PopisekCommit">Commity na githubu za poslední 2 týdny</p>
             </div>
             <div class="GrafDiv">
                 <h2>Běh</h2>
@@ -34,5 +55,5 @@
             </div>
         </div>
     </main>
-</body>
+</body onload="GetToday()">
 </html>
