@@ -27,6 +27,7 @@ main{
 }
 
 #HodinyDiv h3{
+    margin-left: 0.7vw;
     margin-top: -1vw;
     font-size: 7vw;
 }
@@ -35,8 +36,8 @@ main{
     margin-top: -7vw;
     text-align: center;
     background-color: black;
-    margin-left: 0.5vw;
-    width: 48vw;
+    margin-left: 0.7vw;
+    width: 57.5vw;
     padding: 0.5vw;
     border-radius: 55px;
 }
@@ -44,9 +45,15 @@ main{
 #Progress{
     text-align: center;
     background-color: rgb(84, 255, 11);
-    width: 24vw;
+    width: 29vw;
     padding: 3vh;
     border-radius: 55px;
+}
+
+#HodinyDiv p{
+    margin-left: 1.9vw;
+    margin-top: -0.1vw;
+    font-size: 0.9vw;
 }
 
 #VelkýDiv{
@@ -67,4 +74,17 @@ main{
     align-self: flex-end;
     background-color: rgb(52, 51, 51);
     border-radius: 22px;
+}
+
+.GrafDiv h2{
+    margin-left: 1.1vw;
+    font-size: 1.4vw;
+}
+
+.GrafDiv canvas{
+    border-radius: 22px;
+    margin-left: 1.2vw;
+    width: 26vw;
+    height: 10vw;
+    background-color: orange;
 }
