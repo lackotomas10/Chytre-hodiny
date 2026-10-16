@@ -1,0 +1,70 @@
+body{
+    background-color: black;
+    color: white;
+    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+main{
+    margin-top: 3vh;
+    display: flex;
+}
+
+#HodinyDiv{
+    margin-top: 8vh;
+    background-color: rgb(52, 51, 51);
+    width: 70vw;
+    height: 90vh;
+    margin: 0.1vw;
+    border-radius: 22px;
+
+}
+
+#čas{
+    font-size: 26vw;
+    margin-top: -7vw;
+    margin-bottom: -4vh;
+
+}
+
+#HodinyDiv h3{
+    margin-top: -1vw;
+    font-size: 7vw;
+}
+
+#Progressbar{
+    margin-top: -7vw;
+    text-align: center;
+    background-color: black;
+    margin-left: 0.5vw;
+    width: 48vw;
+    padding: 0.5vw;
+    border-radius: 55px;
+}
+
+#Progress{
+    text-align: center;
+    background-color: rgb(84, 255, 11);
+    width: 24vw;
+    padding: 3vh;
+    border-radius: 55px;
+}
+
+#VelkýDiv{
+    margin-top: -6vh;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column; 
+    height: 100%;
+    height: 94vh;
+}
+
+.GrafDiv{
+    margin-top: -2vh;
+    margin-bottom: 4vh;
+    margin-left: 2vw;
+    width: 29vw;
+    height: 28.6vh;
+    align-self: flex-end;
+    background-color: rgb(52, 51, 51);
+    border-radius: 22px;
+}
