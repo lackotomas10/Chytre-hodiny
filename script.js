@@ -24,3 +24,18 @@ function GetLastTwoWeeks(){
 
 GetLastTwoWeeks()
 
+
+async function GetGithubData(){
+    const JménoGithub = "lackotomas10";
+    var url = "https://deno.dev" + JménoGithub + "?y=last";
+    
+    try {
+        var odpoved = await fetch(url);
+        var data = await odpoved.json();
+        console.log(data.contributions);
+
+    } catch (chyba){
+        console.error("Nepodařilo se připojit:", chyba);
+    }
+}
+GetGithubData()
