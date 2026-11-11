@@ -11,10 +11,45 @@
     <main>
         <div id="HodinyDiv">
             <h1 id="čas">20:11</h1>
-            <h3>Pátek 23.10. 2026</h3>
-
+            <h3>pátek 23.10. 2026</h3>
         </div>
-        <div id="Progressbar"><div id="Progress"> </div></div>
+        <div id="tools">
+            <div id="InvisiDiv">
+                <p role="button" tabindex="0" data-panel="timer-panel" aria-expanded="false">Časovač</p>
+                <p role="button" tabindex="0" data-panel="stopwatch-panel" aria-expanded="false">Stopky</p>
+            </div>
+            <section id="timer-panel" class="tool-panel" hidden>
+                <div id="timer-settings" class="tool-settings">
+                    <label for="timer-minutes">Minuty</label>
+                    <div class="number-input">
+                        <input id="timer-minutes" type="number" min="0" max="5999" value="5">
+                        <div class="number-arrows">
+                            <button type="button" class="number-arrow" data-input="timer-minutes" data-step="1" aria-label="Přidat minutu"></button>
+                            <button type="button" class="number-arrow" data-input="timer-minutes" data-step="-1" aria-label="Odebrat minutu"></button>
+                        </div>
+                    </div>
+                    <label for="timer-seconds">Sekundy</label>
+                    <div class="number-input">
+                        <input id="timer-seconds" type="number" min="0" max="59" value="0">
+                        <div class="number-arrows">
+                            <button type="button" class="number-arrow" data-input="timer-seconds" data-step="1" aria-label="Přidat sekundu"></button>
+                            <button type="button" class="number-arrow" data-input="timer-seconds" data-step="-1" aria-label="Odebrat sekundu"></button>
+                        </div>
+                    </div>
+                </div>
+                <div id="timer-face" class="tool-face" role="button" tabindex="0" aria-label="Spustit nebo pozastavit časovač">
+                    <p id="timer-display" class="tool-display">05:00</p>
+                    <p id="timer-status" class="status" aria-live="polite"></p>
+                </div>
+                <button id="timer-end" class="end-tool" type="button" aria-label="Ukončit časovač">Ukončit</button>
+            </section>
+            <section id="stopwatch-panel" class="tool-panel" hidden>
+                <div id="stopwatch-face" class="tool-face" role="button" tabindex="0" aria-label="Spustit nebo pozastavit stopky">
+                    <p id="stopwatch-display" class="tool-display">00:00</p>
+                </div>
+                <button id="stopwatch-end" class="end-tool" type="button" aria-label="Ukončit stopky">Ukončit</button>
+            </section>
+        </div>
     </main>
-</body onload="GetToday()">
+</body>
 </html>
