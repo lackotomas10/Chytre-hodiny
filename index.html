@@ -8,6 +8,13 @@
     <script src="script.js"></script>
 </head>
 <body>
+    <div id="background-media" aria-hidden="true">
+        <img id="background-image" alt="" hidden>
+        <video id="background-video" muted loop playsinline hidden></video>
+        <div id="purple-lights" class="ambient-background"></div>
+        <div id="aurora-lights" class="ambient-background"></div>
+    </div>
+    <input id="background-files" type="file" accept="image/*,video/*" webkitdirectory multiple hidden>
     <main>
         <div id="HodinyDiv">
             <h1 id="čas">20:11</h1>
@@ -51,5 +58,8 @@
             </section>
         </div>
     </main>
+    <footer>
+        <button id="BGCHange" type="button" aria-label="Další pozadí" title="Další pozadí"></button>
+    </footer>
 </body>
 </html>

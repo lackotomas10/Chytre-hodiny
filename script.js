@@ -194,4 +194,93 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("stopwatch-panel").hidden = true;
         menuItems[1].setAttribute("aria-expanded", "false");
     });
+
+    const backgroundButton = document.getElementById("BGCHange");
+    const backgroundFiles = document.getElementById("background-files");
+    const backgroundImage = document.getElementById("background-image");
+    const backgroundVideo = document.getElementById("background-video");
+    const purpleLights = document.getElementById("purple-lights");
+    const auroraLights = document.getElementById("aurora-lights");
+    let backgrounds = [];
+    let backgroundUrls = [];
+    let currentBackground = 0;
+    let folderPickerOpened = false;
+
+    function isVideo(file) {
+        return file.type.startsWith("video/") || /\.(mp4|webm|mov|m4v|ogv)$/i.test(file.name);
+    }
+
+    function showBackground(index) {
+        backgroundImage.hidden = true;
+        backgroundVideo.pause();
+        backgroundVideo.hidden = true;
+        purpleLights.classList.toggle("active", index === 1);
+        auroraLights.classList.toggle("active", index === 2);
+
+        if (index < 3) {
+            return;
+        }
+
+        const fileIndex = index - 3;
+        const file = backgrounds[fileIndex];
+        if (isVideo(file)) {
+            backgroundVideo.src = backgroundUrls[fileIndex];
+            backgroundVideo.hidden = false;
+            backgroundVideo.play().catch((error) => {
+                console.error("Video na pozadí se nepodařilo spustit:", error);
+            });
+        } else {
+            backgroundImage.src = backgroundUrls[fileIndex];
+            backgroundImage.hidden = false;
+        }
+    }
+
+    backgroundFiles.addEventListener("change", () => {
+        backgroundVideo.pause();
+        backgroundVideo.removeAttribute("src");
+        backgroundImage.removeAttribute("src");
+        backgroundImage.hidden = true;
+        backgroundVideo.hidden = true;
+        backgroundUrls.forEach((url) => URL.revokeObjectURL(url));
+        backgroundUrls = [];
+
+        backgrounds = Array.from(backgroundFiles.files)
+            .filter((file) =>
+                file.type.startsWith("image/")
+                || file.type.startsWith("video/")
+                || /\.(avif|bmp|gif|jpe?g|png|svg|webp)$/i.test(file.name)
+            )
+            .sort((first, second) =>
+                first.webkitRelativePath.localeCompare(second.webkitRelativePath, "cs")
+            );
+        backgroundUrls = backgrounds.map((file) => URL.createObjectURL(file));
+        backgroundFiles.value = "";
+        currentBackground = 2;
+        showBackground(currentBackground);
+
+        if (backgrounds.length === 0) {
+            backgroundButton.title = "Ve složce nejsou žádné obrázky ani videa";
+            backgroundButton.setAttribute("aria-label", backgroundButton.title);
+        } else {
+            backgroundButton.title = "Další pozadí";
+            backgroundButton.setAttribute("aria-label", backgroundButton.title);
+        }
+    });
+
+    backgroundFiles.addEventListener("cancel", () => {
+        folderPickerOpened = false;
+        currentBackground = 0;
+        showBackground(currentBackground);
+    });
+
+    backgroundButton.addEventListener("click", () => {
+        if (currentBackground === 2 && backgrounds.length === 0 && !folderPickerOpened) {
+            folderPickerOpened = true;
+            backgroundFiles.click();
+            return;
+        }
+
+        currentBackground = (currentBackground + 1) % (backgrounds.length + 3);
+        showBackground(currentBackground);
+    });
 });

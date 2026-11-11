@@ -6,6 +6,113 @@ body {
     text-align: center;
 }
 
+#background-media {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    background: rgb(0, 0, 0);
+    pointer-events: none;
+}
+
+#background-media img,
+#background-media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ambient-background {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
+
+.ambient-background.active {
+    opacity: 1;
+}
+
+#purple-lights {
+    overflow: hidden;
+    background: rgb(0, 0, 0);
+}
+
+#purple-lights::before,
+#purple-lights::after {
+    position: absolute;
+    top: -20%;
+    width: 48%;
+    height: 140%;
+    border-radius: 50%;
+    content: "";
+    filter: blur(55px);
+}
+
+#purple-lights::before {
+    left: -20%;
+    background: radial-gradient(ellipse, rgba(151, 59, 255, 0.6), transparent 68%);
+    animation: purple-drift-left 22s ease-in-out infinite alternate;
+}
+
+#purple-lights::after {
+    right: -20%;
+    background: radial-gradient(ellipse, rgba(105, 35, 220, 0.55), transparent 68%);
+    animation: purple-drift-right 26s ease-in-out infinite alternate;
+}
+
+#aurora-lights {
+    overflow: hidden;
+    background: #050914;
+}
+
+#aurora-lights::before,
+#aurora-lights::after {
+    position: absolute;
+    left: -25%;
+    width: 150%;
+    content: "";
+    filter: blur(38px);
+    mix-blend-mode: screen;
+}
+
+#aurora-lights::before {
+    top: -40%;
+    height: 100%;
+    background: linear-gradient(112deg, transparent 22%, rgba(80, 190, 255, 0.08) 33%, rgba(63, 220, 202, 0.5) 45%, rgba(68, 169, 148, 0.38) 55%, rgba(151, 95, 235, 0.4) 66%, transparent 78%);
+    animation: aurora-drift 28s ease-in-out infinite alternate;
+}
+
+#aurora-lights::after {
+    top: 5%;
+    height: 75%;
+    background: linear-gradient(105deg, transparent 18%, rgba(72, 196, 255, 0.35) 38%, rgba(71, 231, 205, 0.38) 52%, rgba(164, 103, 255, 0.32) 65%, transparent 81%);
+    animation: aurora-drift 36s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes purple-drift-left {
+    from { transform: translate(0, 0) scale(0.9); }
+    to { transform: translate(12vw, 8vh) scale(1.2); }
+}
+
+@keyframes purple-drift-right {
+    from { transform: translate(0, 0) scale(1.1); }
+    to { transform: translate(-13vw, -7vh) scale(0.85); }
+}
+
+@keyframes aurora-drift {
+    from { transform: translate(-4%, 0) rotate(-12deg) scale(0.95); }
+    to { transform: translate(5%, 10%) rotate(-7deg) scale(1.08); }
+}
+
+main,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
 #čas {
     margin-top: 17vh;
     font-size: 77px;
@@ -40,7 +147,7 @@ button {
     justify-content: center;
     gap: 15px;
     padding: 18px 0;
-    color: rgb(7, 6, 6);
+    color: transparent;
     transition: color 0.5s;
 }
 
@@ -76,7 +183,7 @@ button {
     overflow: hidden;
     border: 0;
     border-radius: 0;
-    background-color: rgb(0, 0, 0);
+    background-color: transparent;
     vertical-align: middle;
 }
 
@@ -108,11 +215,6 @@ button {
     padding: 0;
     border: 0;
     border-radius: 0;
-    background: rgb(0, 0, 0);
-}
-
-.tool-panel .number-arrow:hover {
-    background: rgb(30, 30, 30);
 }
 
 .number-arrow::after {
@@ -155,6 +257,7 @@ button {
 }
 
 .end-tool {
+    margin-top: -82px;
     border: 0;
     opacity: 0;
     transition: opacity 0.3s;
@@ -166,4 +269,34 @@ button {
 
 .end-tool:focus-visible {
     opacity: 1;
+}
+
+#BGCHange {
+    position: fixed;
+    z-index: 2;
+    right: 12px;
+    bottom: 12px;
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#BGCHange:hover,
+#BGCHange:focus-visible {
+    opacity: 0.25;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #purple-lights::before,
+    #purple-lights::after,
+    #aurora-lights::before,
+    #aurora-lights::after {
+        animation: none;
+    }
 }
